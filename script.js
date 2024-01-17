@@ -1,6 +1,6 @@
 const sigIn=document.getElementById("signIn");
 function giriş(){
-    window.location.href="giriş.html"
+    window.location.href="giris.html"
 }
 
 function toggleForm() {
