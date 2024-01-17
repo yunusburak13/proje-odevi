@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,8 +16,6 @@
             background-position: center;
             background-size: cover;
             height: 100vh;
-            backdrop-filter: blur();
-            opacity: ;
         }
         .admin-panel{
             position: absolute;
@@ -35,22 +33,68 @@
             color: #333;
             font-weight: bold;
         }
-        .kuaföradı{
+        .kuaförh{
             font-size: 20px;
         }
+        #KuaförForm{
+            display: grid;
+            place-items: center;
+            margin: auto;
+        }
+        #KuaförForm .btn{
+            padding: 5px;
+            color: #333;
+            font-size: 14px;
+            border-radius: 20px;
+            margin:10px ;
+            background-color: burlywood;
+            transform: all;
+        }
+        #KuaförForm .btn:hover{
+            background-color: antiquewhite;
+            color: black;
+            transition: 0.4s;
+        }
+        #KuaförForm .input{
+            padding: 5px;
+
+        }
+
+        .kuaförListesi{
+            display: flex;
+           align-content: center;
+        }
+        .kuaförListesi ul li{
+           list-style-type: none;
+        }
+
     </style>
 </head>
 <body>
-    <div class="admin-panel">
-        <h1>Kuaför Yönetim Paneli</h1> 
-       <form id="KuaförForm">
-        <label for="KuaförAdı" class="kuaföradı">Kuaför Adı: </label>
-        <input type="text" id="KuaförAdı" name="KuaförAdı">
-        <button type="submit" onclick="ekleKuaför()">Kuaför Ekle</button>
-       </form>
-    </div>
-    <div class="kuaförListesi">
+    <div>
+        <div class="admin-panel">
+
+            <h1>Kuaför Yönetim Paneli</h1> 
+         <form id="KuaförForm">
+            <label for="KuaförAdi" class="kuaförh">Kuaför Adı: </label>
+            <input class="input" type="text" id="KuaförAdi" name="KuaförAdi"><br>
+            <label for="Kuaförno" id="kuaförNo" class="kuaförh">Telefon no: </label>
+            <input class="input" type="tel" id="kuaförno" name="Kuaförno"><br>
+            <button class="btn" type="submit" onclick="ekleKuaför()">Kuaför Ekle</button>
+            <button class="btn" type="submit" onclick="silKuaför()">Kuaför Sil</button>
+         </form>
+        </div>
+
+       <div class="kuaförListesi">
         <!-- Kuaför listesi burada görünecek -->
+        <h2>Kuaför Listesi</h2>
+        <ul id="kuaförListesi">
+
+        </ul>
+
     </div>
+    </div>
+
+    <script src="admin.js"></script>
 </body>
 </html>
