@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       body {
+            font-family: Arial, sans-serif;
+            background-color: bisque;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #randevular {
+            margin-top: 20px;
+        }
+
+        #sonuc {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>Kendi Çalışma Saatlerini Belirle</h3>
+    
+        <label for="kuaforAdSoyad">Ad Soyad:</label>
+        <input type="text" id="kuaforAdSoyad" placeholder="Ad Soyad" readonly>
+    
+        <label for="gunSec">Gün Seçin:</label>
+        <select id="gunSec">
+            <option value="pazartesi">Pazartesi</option>
+            <option value="sali">Salı</option>
+            <option value="carsamba">Çarşamba</option>
+            <option value="persembe">Perşembe</option>
+            <option value="cuma">Cuma</option>
+            <option value="cumartesi">Cumartesi</option>
+            <option value="pazar">Pazar</option>
+        </select>
+    
+        <label for="baslangicSaat">Başlangıç Saati:</label>
+        <select id="baslangicSaat"></select>
+    
+        <label for="bitisSaat">Bitiş Saati:</label>
+        <select id="bitisSaat"></select>
+    
+        <button onclick="calismaSaatleriniBelirle()">Çalışma Saatlerini Kaydet</button>
+    
+        <div id="randevular">
+            <h4>Alınan Randevular</h4>
+            <ul id="kuaforRandevular"></ul>
+        </div>
+    
+        <div id="sonuc"></div>
+    </div>
+    <script src="kuafor.js"></script>
+</body>
+</html>

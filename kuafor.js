@@ -1,57 +1,66 @@
-let workingHours = "09:00 - 18:00";
-let appointmentRequests = [];
+function calismaSaatleriniBelirle() {
+    var kuaforAdSoyad = document.getElementById("kuaforAdSoyad").value;
+    var seciliGun = document.getElementById("gunSec").value;
+    var baslangicSaat = document.getElementById("baslangicSaat").value;
+    var bitisSaat = document.getElementById("bitisSaat").value;
 
-function defineWorkingHours() {
-    const newHours = prompt("Çalışma saatlerini girin (örn: 09:00 - 18:00):");
-    
-    if (newHours) {
-        workingHours = newHours;
-        document.getElementById('workingHoursText').textContent = `Çalışma Saatleri: ${workingHours}`;
-    }
+    var randevu = {
+        kuafor: kuaforAdSoyad,
+        gun: seciliGun,
+        baslangic: baslangicSaat,
+        bitis: bitisSaat
+    };
+
+    // Randevuyu listeye ekle
+    randevularListesi.push(randevu);
+
+    // Çalışma saatlerini güncelle
+    calismaSaatleriniGuncelle();
+
+    var sonucMesaji = "Çalışma saatleri kaydedildi:<br>" +
+                      "Gün: " + seciliGun + "<br>" +
+                      "Başlangıç Saati: " + baslangicSaat + "<br>" +
+                      "Bitiş Saati: " + bitisSaat;
+
+    document.getElementById("sonuc").innerHTML = sonucMesaji;
 }
 
-function displayAppointmentRequests() {
-    const list = document.getElementById('appointmentList');
-    list.innerHTML = ""; // Liste içeriğini temizle
+function calismaSaatleriniGuncelle() {
+    var kuaforAdSoyad = document.getElementById("kuaforAdSoyad").value;
+    var kuaforRandevularListesi = document.getElementById("kuaforRandevular");
+    kuaforRandevularListesi.innerHTML = ""; // Önceki listeyi temizle
 
-    for (let i = 0; i < appointmentRequests.length; i++) {
-        const listItem = document.createElement('li');
-        listItem.textContent = `Randevu Saati: ${appointmentRequests[i]} `;
-        
-        const approveButton = document.createElement('button');
-        approveButton.textContent = 'Onayla';
-        approveButton.onclick = function() {
-            approveAppointment(i);
-        };
-        listItem.appendChild(approveButton);
+    // Kullanıcının adına ait randevuları filtrele
+    var kuaforRandevular = randevularListesi.filter(function (randevu) {
+        return randevu.kuafor === kuaforAdSoyad;
+    });
 
-        const rejectButton = document.createElement('button');
-        rejectButton.textContent = 'Reddet';
-        rejectButton.onclick = function() {
-            rejectAppointment(i);
-        };
-        listItem.appendChild(rejectButton);
-
-        list.appendChild(listItem);
-    }
+    // Kullanıcının adına ait randevuları listeye ekle
+    kuaforRandevular.forEach(function (randevu) {
+        var li = document.createElement("li");
+        li.textContent = randevu.gun + " - " + randevu.baslangic + " - " + randevu.bitis;
+        kuaforRandevularListesi.appendChild(li);
+    });
 }
 
-function approveAppointment(index) {
-    // Burada randevu onaylama işlemleri yapılabilir
-    alert(`Randevu onaylandı: ${appointmentRequests[index]}`);
-    appointmentRequests.splice(index, 1);
-    displayAppointmentRequests();
+var saatSecenekleri = [];
+for (var i = 0; i < 24; i++) {
+    var saat = (i < 10) ? "0" + i : i;
+    saatSecenekleri.push(saat + ":00");
 }
 
-function rejectAppointment(index) {
-    // Burada randevu reddetme işlemleri yapılabilir
-    alert(`Randevu reddedildi: ${appointmentRequests[index]}`);
-    appointmentRequests.splice(index, 1);
-    displayAppointmentRequests();
-}
+var baslangicSaatSelect = document.getElementById("baslangicSaat");
+var bitisSaatSelect = document.getElementById("bitisSaat");
 
-// İlk çalışma saatlerini göster
-document.getElementById('workingHoursText').textContent = `Çalışma Saatleri: ${workingHours}`;
+saatSecenekleri.forEach(function (saat) {
+    var baslangicOption = document.createElement("option");
+    baslangicOption.text = saat;
+    baslangicSaatSelect.add(baslangicOption);
 
-// İlk randevu listesini göster
-displayAppointmentRequests();
+    var bitisOption = document.createElement("option");
+    bitisOption.text = saat;
+    bitisSaatSelect.add(bitisOption);
+});
+
+// Kuaförün randevularını saklamak için bir dizi
+var randevularListesi = [];
